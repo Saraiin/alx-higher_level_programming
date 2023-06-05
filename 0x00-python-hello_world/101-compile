@@ -1,3 +1,2 @@
 #!/bin/bash
-echo "Compiling $PYFILE ..."
-/usr/bin/py3compile $PYFILE 
+python3 -m compileall $PYFILE
