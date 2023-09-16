@@ -22,14 +22,22 @@ if __name__ == "__main__":
                       "WHERE states.name = %(name)s",
                       "ORDER BY cities.id"])
 
-    cur.execute(query, {'name': argv[4]})
-    rows = cur.fetchall()
+     cursor = db.cursor()
+    query = " ".join(["SELECT c.name FROM cities c, states st",
+                      "WHERE c.state_id = st.id",
+                      "AND st.name = %(name)s",
+                      "ORDER BY c.id"])
+
+    cursor.execute(query, {'name': state_name})
+    rows = cursor.fetchall()
     if rows:
-        for i in range(len(rows)):
-            if i != len(rows) - 1:
+        list_len = len(rows)
+        for i in range(list_len):
+            if i != list_len - 1:
                 print(rows[i][0], end=", ")
-        print(rows[len(rows) - 1][0])
+        print(rows[list_len - 1][0])
     else:
         print()
-    cur.close()
+
+    cursor.close()
     db.close()
