@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-"""script that lists all cities from
-the database hbtn_0e_4_usa
+"""script that takes in the name of a state as an argument
+and lists all cities of that state, using the database
+hbtn_0e_4_usa
 """
 
 
@@ -8,29 +9,27 @@ if __name__ == "__main__":
     import MySQLdb
     from sys import argv
 
-    HOST = "localhost"
-    PORT = 3306
-    USER = argv[1]
-    PASS = argv[2]
-    DB = argv[3]
-
-    db = MySQLdb.connect(host=HOST,
-                         port=PORT,
-                         user=USER,
-                         passwd=PASS,
-                         db=DB,
+    db = MySQLdb.connect(host="localhost",
+                         port=3306,
+                         user=argv[1],
+                         passwd=argv[2],
+                         db=argv[3],
                          charset="utf8")
 
-    cursor = db.cursor()
-    query = " ".join(["SELECT c.id, c.name, st.name",
-                      "FROM cities c, states st",
-                      "WHERE c.state_id = st.id",
-                      "ORDER BY c.id"])
+    cur = db.cursor()
+    query = " ".join(["SELECT cities.name FROM cities LEFT JOIN states",
+                      "ON cities.state_id = states.id",
+                      "WHERE states.name = %(name)s",
+                      "ORDER BY cities.id"])
 
-    cursor.execute(query)
-    rows = cursor.fetchall()
-    for row in rows:
-        print(row)
-
-    cursor.close()
+    cur.execute(query, {'name': argv[4]})
+    rows = cur.fetchall()
+    if rows:
+        for i in range(len(rows)):
+            if i != len(rows) - 1:
+                print(rows[i][0], end=", ")
+        print(rows[len(rows) - 1][0])
+    else:
+        print()
+    cur.close()
     db.close()
