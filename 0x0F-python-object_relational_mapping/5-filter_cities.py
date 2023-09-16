@@ -16,13 +16,7 @@ if __name__ == "__main__":
                          db=argv[3],
                          charset="utf8")
 
-    cur = db.cursor()
-    query = " ".join(["SELECT cities.name FROM cities LEFT JOIN states",
-                      "ON cities.state_id = states.id",
-                      "WHERE states.name = %(name)s",
-                      "ORDER BY cities.id"])
-
-     cursor = db.cursor()
+    cursor = db.cursor()
     query = " ".join(["SELECT c.name FROM cities c, states st",
                       "WHERE c.state_id = st.id",
                       "AND st.name = %(name)s",
