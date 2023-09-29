@@ -7,3 +7,12 @@
 - How to make HTTP POST/PUT/etc. request
 - How to fetch JSON resources
 - How to manipulate data from an external service
+<table>
+<tr> 
+<td>1-hbtn_header.py </td>
+<td>Usage: ./1-hbtn_header.py <URL></td>
+<tr>
+<td> 2-post_email.py</td>
+<td> Usage: ./2-post_email.py <URL> <email>
+</td>
+</tr>
