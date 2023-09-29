@@ -16,3 +16,9 @@
 <td> Usage: ./2-post_email.py "URL" <email>
 </td>
 </tr>
+<tr>
+<td>3-error_code.py</td>
+<td>Usage: ./3-error_code.py "URL"
+  - Handles HTTP errors.</td>
+</tr>
+
