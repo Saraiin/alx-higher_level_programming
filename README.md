@@ -1,5 +1,5 @@
 <h1> HIGHER LEVEL PROGRAMMING </h1>
-This repo for High level language (ALX_Africa)
+This repo for High level programming language (ALX_Africa)
 <h2> PYTHON 📝 </h2> 
 - If-else Loops <br>
 - Function <br>
